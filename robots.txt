@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://math-memory-trainer.rajneeshshiv88.workers.dev/sitemap.xml
