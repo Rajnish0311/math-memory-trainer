@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef">
+  <meta name="description" content="Build fast recall for squares and cubes with focused daily practice.">
+  <title>Numeral | Math Memory Trainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#main" aria-label="Numeral home">
+        <span class="brand-mark" aria-hidden="true">n<span>.</span></span>
+        <span class="brand-name">numeral</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>YOUR DAILY NUMBER PRACTICE</span>
+      </div>
+      <button class="icon-button" id="restart-button" type="button" title="Restart session" aria-label="Restart session">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4.9 9a7.5 7.5 0 0 1 12.6-2L20 12M4 17v-5h5m10.1 3a7.5 7.5 0 0 1-12.6 2L4 12"/></svg>
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="intro-row" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">MENTAL MATH, MADE MEMORABLE</p>
+          <h1 id="page-title">Make it <span>second nature.</span></h1>
+        </div>
+        <div class="date-chip"><span class="date-spark" aria-hidden="true">✳</span><span id="today-label">A little practice goes a long way</span></div>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="practice-column" aria-label="Practice area">
+          <div class="control-strip">
+            <div class="control-group">
+              <span class="control-label" id="mode-label">PRACTICE</span>
+              <div class="segmented" role="group" aria-labelledby="mode-label">
+                <button class="segment is-selected" type="button" data-mode="squares" aria-pressed="true">Squares</button>
+                <button class="segment" type="button" data-mode="cubes" aria-pressed="false">Cubes</button>
+                <button class="segment" type="button" data-mode="mixed" aria-pressed="false">Mixed</button>
+              </div>
+            </div>
+            <div class="control-group difficulty-group">
+              <span class="control-label" id="difficulty-label">DIFFICULTY</span>
+              <div class="segmented segmented-compact" role="group" aria-labelledby="difficulty-label">
+                <button class="segment is-selected" type="button" data-difficulty="easy" aria-pressed="true">Easy</button>
+                <button class="segment" type="button" data-difficulty="medium" aria-pressed="false">Medium</button>
+                <button class="segment" type="button" data-difficulty="hard" aria-pressed="false">Hard</button>
+              </div>
+            </div>
+          </div>
+
+          <article class="question-panel" aria-labelledby="question-title">
+            <div class="question-topline">
+              <span class="question-tag"><span class="tag-dot" aria-hidden="true"></span><span id="question-kind">SQUARES</span></span>
+              <span class="question-count" id="question-position">QUESTION 01</span>
+            </div>
+            <div class="question-content">
+              <p class="question-prompt" id="question-title">What is <span id="base-number">12</span><sup id="power-number">2</sup>?</p>
+              <p class="hint-line" id="hint-line">First digit revealed <span class="hint-divider">/</span> <span id="answer-hint" aria-label="Answer hint">1__</span></p>
+            </div>
+            <form id="answer-form" novalidate>
+              <label class="sr-only" for="answer-input">Your answer</label>
+              <div class="answer-row">
+                <div class="answer-input-wrap">
+                  <span class="input-prefix" aria-hidden="true">=</span>
+                  <input id="answer-input" name="answer" type="text" inputmode="numeric" autocomplete="off" placeholder="Your answer" aria-describedby="feedback-message" aria-label="Your answer">
+                </div>
+                <button class="check-button" id="check-button" type="submit">Check answer <span aria-hidden="true">↗</span></button>
+              </div>
+              <p class="feedback-message" id="feedback-message" role="status" aria-live="polite">Type your answer and press Enter.</p>
+            </form>
+            <div class="question-actions">
+              <button class="text-button" id="next-button" type="button" disabled>Next question <span aria-hidden="true">→</span></button>
+              <span class="keyboard-note"><kbd>ENTER</kbd> TO CHECK</span>
+            </div>
+            <div class="panel-decoration" aria-hidden="true">×</div>
+          </article>
+
+          <section class="revision-bar" aria-labelledby="revision-title">
+            <div class="revision-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4.5 8.5A8 8 0 1 1 4 13M4 4v5h5M12 8v4l2.5 1.5"/></svg>
+            </div>
+            <div class="revision-copy">
+              <h2 id="revision-title">A second look</h2>
+              <p><span id="revision-count">0</span> <span id="revision-label">questions waiting for review</span></p>
+            </div>
+            <button class="revision-button" id="revision-button" type="button" disabled>Review misses <span aria-hidden="true">→</span></button>
+          </section>
+        </section>
+
+        <aside class="stats-column" aria-label="Session progress">
+          <div class="stats-heading">
+            <div>
+              <p class="eyebrow">YOUR SESSION</p>
+              <h2>Progress</h2>
+            </div>
+            <span class="session-indicator" title="Session in progress"><span></span> LIVE</span>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card stat-card-score">
+              <div class="stat-card-top"><span class="stat-label">SCORE</span><span class="stat-icon icon-score" aria-hidden="true">+</span></div>
+              <p class="stat-value" id="score-value">0<span class="stat-unit"> pts</span></p>
+              <p class="stat-caption">correct answers</p>
+            </article>
+            <article class="stat-card stat-card-accuracy">
+              <div class="stat-card-top"><span class="stat-label">ACCURACY</span><span class="stat-icon icon-accuracy" aria-hidden="true">%</span></div>
+              <p class="stat-value" id="accuracy-value">—</p>
+              <p class="stat-caption">of answered questions</p>
+            </article>
+            <article class="stat-card stat-card-questions">
+              <div class="stat-card-top"><span class="stat-label">ANSWERED</span><span class="stat-icon icon-questions" aria-hidden="true">#</span></div>
+              <p class="stat-value" id="answered-value">0</p>
+              <p class="stat-caption">this session</p>
+            </article>
+            <article class="stat-card stat-card-time">
+              <div class="stat-card-top"><span class="stat-label">TIME</span><span class="stat-icon icon-time" aria-hidden="true">◷</span></div>
+              <p class="stat-value" id="time-value">00:00</p>
+              <p class="stat-caption">session elapsed</p>
+            </article>
+          </div>
+          <div class="session-note">
+            <span class="note-mark" aria-hidden="true">✳</span>
+            <p>Small, steady sessions build <strong>lasting recall.</strong></p>
+          </div>
+          <div class="range-note"><span>QUESTION RANGE</span><span>Squares 1–50 <i></i> Cubes 1–20</span></div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer"><span>NUMERAL <span class="footer-dot">•</span> A LITTLE SHARPER, EVERY DAY</span><span>YOUR PROGRESS STAYS ON THIS DEVICE</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+</body>
+</html>
